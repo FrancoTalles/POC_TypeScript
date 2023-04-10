@@ -32,7 +32,7 @@ async function read(req: Request, res: Response, next: NextFunction) {
 }
 
 async function update(req: Request, res: Response, next: NextFunction) {
-    const { id } = res.locals.id;
+    const id = res.locals.id as string;
 
     try {
         const updateTask = await taskServices.updateTask(id)

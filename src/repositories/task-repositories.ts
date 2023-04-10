@@ -22,7 +22,7 @@ async function readTasks(){
     return readQuery;
 };
 
-async function getTaskById(id: number) {
+async function getTaskById(id: string) {
     const getQuery = await db.query(
     `
         SELECT * FROM tasks WHERE id = $1;
@@ -32,9 +32,10 @@ async function getTaskById(id: number) {
     return getQuery;
 }
 
-async function updateStatus(id: number){
+async function updateStatus(id: string){
     const updateQuery = await db.query(
-    `UPDATE tasks SET status = true WHERE id = $1;`, [id])
+    `UPDATE tasks SET status = true WHERE id = $1`, [id])
+    console.log(updateQuery)
     return updateQuery;
 }
 export default { createTask, readTasks, getTaskById, updateStatus };

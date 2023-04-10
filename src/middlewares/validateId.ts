@@ -2,7 +2,7 @@ import taskRepositories from "../repositories/task-repositories.js";
 import { Request, Response, NextFunction } from "express";
 
 export async function validateId(req: Request, res: Response, next: NextFunction) {
-    const id = Number(req.params.id);
+    const id = req.params.id;
 
     try {
         const search = await taskRepositories.getTaskById(id);

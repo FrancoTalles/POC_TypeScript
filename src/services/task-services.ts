@@ -13,7 +13,7 @@ async function readTasks() {
     return tasks;
 }
 
-async function updateTask(id: number) {
+async function updateTask(id: string) {
     const updated = await taskRepositories.updateStatus(id);
     if(!updated) throw new Error("Não conseguiu atualizar");
     return updated;
