@@ -1,4 +1,3 @@
-import { QueryResult } from "pg";
 import { db } from "../config/database.js";
 import { Task } from "../controllers/tasks-controllers.js";
 
@@ -22,4 +21,20 @@ async function readTasks(){
 
     return readQuery;
 };
-export default { createTask, readTasks };
+
+async function getTaskById(id: number) {
+    const getQuery = await db.query(
+    `
+        SELECT * FROM tasks WHERE id = $1;
+    `,
+    [id]
+    );
+    return getQuery;
+}
+
+async function updateStatus(id: number){
+    const updateQuery = await db.query(
+    `UPDATE tasks SET status = true WHERE id = $1;`, [id])
+    return updateQuery;
+}
+export default { createTask, readTasks, getTaskById, updateStatus };

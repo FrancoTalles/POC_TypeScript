@@ -31,7 +31,16 @@ async function read(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function update(req: Request, res: Response, next: NextFunction) {
+    const { id } = res.locals.id;
 
+    try {
+        const updateTask = await taskServices.updateTask(id)
+        return res.status(202).send("Updated")
+    } catch (error) {
+        return res.status(500).send("Update Error")
+    }
+}
 
  
-export default { create, read }
+export default { create, read, update }
