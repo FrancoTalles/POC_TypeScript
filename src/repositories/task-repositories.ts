@@ -34,8 +34,14 @@ async function getTaskById(id: string) {
 
 async function updateStatus(id: string){
     const updateQuery = await db.query(
-    `UPDATE tasks SET status = true WHERE id = $1`, [id])
-    console.log(updateQuery)
+        `UPDATE tasks SET status = true WHERE id = $1`, [id])
     return updateQuery;
 }
-export default { createTask, readTasks, getTaskById, updateStatus };
+
+async function deleteTask(id: string) {
+    const deleteQuery = await db.query(
+        `DELETE FROM tasks WHERE id = $1`, [id]);
+    return deleteQuery;
+    
+}
+export default { createTask, readTasks, getTaskById, updateStatus, deleteTask };

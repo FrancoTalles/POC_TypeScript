@@ -9,6 +9,6 @@ const taskRoutes = Router();
 taskRoutes.post("/", validateSchema(taskSchema), tasksControllers.create);
 taskRoutes.get("/", tasksControllers.read);
 taskRoutes.patch("/:id", validateId, tasksControllers.update);
-taskRoutes.delete("/:id", );
+taskRoutes.delete("/:id", validateId, tasksControllers.remove);
 
 export default taskRoutes;

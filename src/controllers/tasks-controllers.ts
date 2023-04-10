@@ -42,5 +42,15 @@ async function update(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function remove(req: Request, res: Response, next: NextFunction) {
+    const id = res.locals.id as string;
+    try {
+        const deleteTask = await taskServices.deleteTask(id)
+        return res.status(204).send("Deleted")
+    } catch (error) {
+        return res.status(500).send("Delete Error")
+    }
+}
+
  
-export default { create, read, update }
+export default { create, read, update, remove }

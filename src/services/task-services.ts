@@ -19,4 +19,10 @@ async function updateTask(id: string) {
     return updated;
 }
 
-export default { createTask, readTasks, updateTask}
+async function deleteTask(id: string) {
+    const deleted = await taskRepositories.deleteTask(id);
+    if(deleted.rowCount === 0) throw new Error("Não conseguiu deletar")
+    return deleted;
+}
+
+export default { createTask, readTasks, updateTask, deleteTask}
